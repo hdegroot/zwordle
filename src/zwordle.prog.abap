@@ -376,6 +376,11 @@ class lcl_wordle implementation.
 
   method build_5_letter_word_list.
 
+  "
+  " Source for 5-Letter Word List:
+  " https://www-cs-faculty.stanford.edu/~knuth/sgb-words.txt
+  "
+  
     append 'WHICH' to word_list.
     append 'THERE' to word_list.
     append 'THEIR' to word_list.
