@@ -6,7 +6,7 @@ Specify black, orange and allowed letters for a letter position, and it generate
 
 Mannual Installation:
 1. Create program ZWORDLE.
-2. Copy-paste program ZWODLE in the file.
+2. Copy-paste program ZWORDLE in the file.
 3. Bonus: Create transaction code ZWORDLE. 
 
 Have fun ... and amaze your friends with your Wordle skills! :-)
