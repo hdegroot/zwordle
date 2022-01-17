@@ -68,6 +68,15 @@ selection-screen end of line.
 selection-screen begin of line.
 selection-screen comment 1(80) text-003.
 selection-screen end of line.
+selection-screen begin of line.
+selection-screen comment 1(80) text-004.
+selection-screen end of line.
+selection-screen begin of line.
+selection-screen comment 1(80) text-005.
+selection-screen end of line.
+selection-screen begin of line.
+selection-screen comment 1(80) text-006.
+selection-screen end of line.
 
 selection-screen skip.
 

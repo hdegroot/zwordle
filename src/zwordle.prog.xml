@@ -16,20 +16,38 @@
     <item>
      <ID>I</ID>
      <KEY>001</KEY>
-     <ENTRY>For each letter position, list the allowed letter(s).</ENTRY>
+     <ENTRY>1. For each letter position, list the allowed letter(s).</ENTRY>
      <LENGTH>80</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>002</KEY>
-     <ENTRY>Leave a letter blank to allow all letters at that position.</ENTRY>
+     <ENTRY>2. Optional:</ENTRY>
      <LENGTH>61</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>003</KEY>
-     <ENTRY>Press the ENTER-key to remove the BLACK letters from each letter position.</ENTRY>
+     <ENTRY>    * Specify BLACK letters</ENTRY>
      <LENGTH>74</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>004</KEY>
+     <ENTRY>       Press the ENTER-key to remove the BLACK letters from each letter position.</ENTRY>
+     <LENGTH>81</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>005</KEY>
+     <ENTRY>    * Specify ORANGE letters</ENTRY>
+     <LENGTH>28</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>006</KEY>
+     <ENTRY>3. Press the EXECUTE button to generate the list of matching 5-letter words.</ENTRY>
+     <LENGTH>76</LENGTH>
     </item>
     <item>
      <ID>R</ID>
