@@ -22,6 +22,7 @@ class lcl_wordle definition.
              vowel_count             type i,
              consonant_count         type i,
              contains_orange_letters type abap_bool,
+             score                   type p length 6 decimals 1,
            end of ty_matched_word,
 
            ty_matched_word_tab type standard table of ty_matched_word with default key.
@@ -35,10 +36,26 @@ class lcl_wordle definition.
       black_letters type char26,
       orange_letters type char26.
 
+    class-methods:
+      class_constructor.
+
     methods:
       main.
 
   private section.
+
+    types:
+      ty_relative_frequency type p length 6 decimals 4,
+      begin of ty_frequencies,
+        first_letter type ty_relative_frequency,
+        other_letters type ty_relative_frequency,
+      end of ty_frequencies.
+
+    class-data:
+      frequencies type standard table of ty_frequencies with default key.
+
+    class-methods:
+      get_frequency importing i_letter type char1 i_first type abap_bool returning value(r_frequency) type ty_relative_frequency.
 
     data:
       word_list        type string_table,
@@ -49,6 +66,7 @@ class lcl_wordle definition.
       build_5_letter_word_list,
       build_regex_string,
       get_matched_words,
+      calculate_score,
       display_output,
       get_vowel_count importing i_word type char5 returning value(r_count) type i,
       contains_all_orange_letters importing i_word type char5 returning value(r_contains_all_orange_letters) type abap_bool.
@@ -154,6 +172,54 @@ start-of-selection.
 *------------------------------------------------------------------------------
 class lcl_wordle implementation.
 
+  method class_constructor.
+
+    " https://en.wikipedia.org/wiki/Letter_frequency
+    frequencies = value #(
+      ( first_letter = '5.7' other_letters = '7.8' ) "A
+      ( first_letter = '6.0' other_letters = '2.0' ) "B
+      ( first_letter = '9.4' other_letters = '4.0' ) "C
+      ( first_letter = '6.1' other_letters = '3.8' ) "D
+      ( first_letter = '3.9' other_letters = '11.0' ) "E
+      ( first_letter = '4.1' other_letters = '1.4' ) "F
+      ( first_letter = '3.3' other_letters = '3.0' ) "G
+      ( first_letter = '3.7' other_letters = '2.3' ) "H
+      ( first_letter = '3.9' other_letters = '8.2' ) "I
+      ( first_letter = '1.1' other_letters = '0.21' ) "J
+      ( first_letter = '1.0' other_letters = '2.5' ) "K
+      ( first_letter = '3.1' other_letters = '5.3' ) "L
+      ( first_letter = '5.6' other_letters = '2.7' ) "M
+      ( first_letter = '2.2' other_letters = '7.2' ) "N
+      ( first_letter = '2.5' other_letters = '6.1' ) "O
+      ( first_letter = '7.7' other_letters = '2.8' ) "P
+      ( first_letter = '0.49' other_letters = '0.24' ) "Q
+      ( first_letter = '6.0' other_letters = '7.3' ) "R
+      ( first_letter = '11.0' other_letters = '8.7' ) "S
+      ( first_letter = '5.0' other_letters = '6.7' ) "T
+      ( first_letter = '2.9' other_letters = '3.3' ) "U
+      ( first_letter = '1.5' other_letters = '1.0' ) "V
+      ( first_letter = '2.7' other_letters = '0.91' ) "W
+      ( first_letter = '0.05' other_letters = '0.27' ) "X
+      ( first_letter = '0.36' other_letters = '1.6' ) "Y
+      ( first_letter = '0.24' other_letters = '0.44' ) "Z
+      ).
+
+  endmethod.
+
+
+  method get_frequency.
+
+    read table frequencies assigning field-symbol(<frequency>) index find( val = sy-abcde sub = i_letter ).
+    assert sy-subrc = 0.
+
+    if i_first = abap_true.
+      r_frequency = <frequency>-first_letter.
+    else.
+      r_frequency = <frequency>-other_letters.
+    endif.
+
+  endmethod.
+
 
   method main.
 
@@ -162,6 +228,8 @@ class lcl_wordle implementation.
     build_regex_string( ).
 
     get_matched_words( ).
+
+    calculate_score( ).
 
     display_output( ).
 
@@ -193,6 +261,39 @@ class lcl_wordle implementation.
 
     endloop.
 
+
+  endmethod.
+
+
+  method calculate_score.
+
+    field-symbols:
+      <ls_matched_word> type ty_matched_word.
+
+    loop at matched_word_tab assigning <ls_matched_word>.
+
+      if strlen( letter1 ) > 1.
+        <ls_matched_word>-score = <ls_matched_word>-score
+          + get_frequency( i_letter = <ls_matched_word>-word+0(1) i_first = abap_true ).
+      endif.
+      if strlen( letter2 ) > 1.
+        <ls_matched_word>-score = <ls_matched_word>-score
+          + get_frequency( i_letter = <ls_matched_word>-word+1(1) i_first = abap_false ).
+      endif.
+      if strlen( letter3 ) > 1.
+        <ls_matched_word>-score = <ls_matched_word>-score
+          + get_frequency( i_letter = <ls_matched_word>-word+2(1) i_first = abap_false ).
+      endif.
+      if strlen( letter4 ) > 1.
+        <ls_matched_word>-score = <ls_matched_word>-score
+          + get_frequency( i_letter = <ls_matched_word>-word+3(1) i_first = abap_false ).
+      endif.
+      if strlen( letter5 ) > 1.
+        <ls_matched_word>-score = <ls_matched_word>-score
+          + get_frequency( i_letter = <ls_matched_word>-word+4(1) i_first = abap_false ).
+      endif.
+
+    endloop.
 
   endmethod.
 
@@ -283,17 +384,18 @@ class lcl_wordle implementation.
 
     skip.
 
-    write: / 'Word |', 'Vowel Count |', 'Consonant Count |', 'Contains All Orange Letters'.
+    write: / 'Word |', 'Vowel Count |', 'Consonant Count |', 'Contains All Orange Letters |', 'Score'.
 
     sort matched_word_tab by contains_orange_letters descending
-                             word ascending.
+                             score descending.
 
     loop at matched_word_tab into matched_word_wa.
 
       write: / matched_word_wa-word under 'Word |',
                matched_word_wa-vowel_count under 'Vowel Count |',
                matched_word_wa-consonant_count under 'Consonant Count |',
-               matched_word_wa-contains_orange_letters under 'Contains All Orange Letters'.
+               matched_word_wa-contains_orange_letters under 'Contains All Orange Letters |',
+               matched_word_wa-score under 'Score'.
 
     endloop.
 
