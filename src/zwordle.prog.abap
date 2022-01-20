@@ -28,12 +28,12 @@ class lcl_wordle definition.
            ty_matched_word_tab type standard table of ty_matched_word with default key.
 
     class-data:
-      letter1 type char26,
-      letter2 type char26,
-      letter3 type char26,
-      letter4 type char26,
-      letter5 type char26,
-      black_letters type char26,
+      letter1        type char26,
+      letter2        type char26,
+      letter3        type char26,
+      letter4        type char26,
+      letter5        type char26,
+      black_letters  type char26,
       orange_letters type char26.
 
     class-methods:
@@ -47,7 +47,7 @@ class lcl_wordle definition.
     types:
       ty_relative_frequency type p length 6 decimals 4,
       begin of ty_frequencies,
-        first_letter type ty_relative_frequency,
+        first_letter  type ty_relative_frequency,
         other_letters type ty_relative_frequency,
       end of ty_frequencies.
 
@@ -150,8 +150,8 @@ at selection-screen output.
 *------------------------------------------------------------------------------
 start-of-selection.
 
-   data:
-     wordle_assistant type ref to lcl_wordle.
+  data:
+    wordle_assistant type ref to lcl_wordle.
 
 
   lcl_wordle=>letter1 = pletter1.
@@ -174,42 +174,100 @@ class lcl_wordle implementation.
 
   method class_constructor.
 
+    "
+    " Source of Letter Frequency for English Dictionary Words:
     " https://en.wikipedia.org/wiki/Letter_frequency
-    frequencies = value #(
-      ( first_letter = '5.7' other_letters = '7.8' ) "A
-      ( first_letter = '6.0' other_letters = '2.0' ) "B
-      ( first_letter = '9.4' other_letters = '4.0' ) "C
-      ( first_letter = '6.1' other_letters = '3.8' ) "D
-      ( first_letter = '3.9' other_letters = '11.0' ) "E
-      ( first_letter = '4.1' other_letters = '1.4' ) "F
-      ( first_letter = '3.3' other_letters = '3.0' ) "G
-      ( first_letter = '3.7' other_letters = '2.3' ) "H
-      ( first_letter = '3.9' other_letters = '8.2' ) "I
-      ( first_letter = '1.1' other_letters = '0.21' ) "J
-      ( first_letter = '1.0' other_letters = '2.5' ) "K
-      ( first_letter = '3.1' other_letters = '5.3' ) "L
-      ( first_letter = '5.6' other_letters = '2.7' ) "M
-      ( first_letter = '2.2' other_letters = '7.2' ) "N
-      ( first_letter = '2.5' other_letters = '6.1' ) "O
-      ( first_letter = '7.7' other_letters = '2.8' ) "P
-      ( first_letter = '0.49' other_letters = '0.24' ) "Q
-      ( first_letter = '6.0' other_letters = '7.3' ) "R
-      ( first_letter = '11.0' other_letters = '8.7' ) "S
-      ( first_letter = '5.0' other_letters = '6.7' ) "T
-      ( first_letter = '2.9' other_letters = '3.3' ) "U
-      ( first_letter = '1.5' other_letters = '1.0' ) "V
-      ( first_letter = '2.7' other_letters = '0.91' ) "W
-      ( first_letter = '0.05' other_letters = '0.27' ) "X
-      ( first_letter = '0.36' other_letters = '1.6' ) "Y
-      ( first_letter = '0.24' other_letters = '0.44' ) "Z
-      ).
+    "
+
+    data frequency like line of frequencies.
+
+    frequency-first_letter  = '5.7'.
+    frequency-other_letters = '7.8'. "A
+    insert frequency into table frequencies.
+    frequency-first_letter  = '6.0'.
+    frequency-other_letters = '2.0'. "B
+    insert frequency into table frequencies.
+    frequency-first_letter  = '9.4'.
+    frequency-other_letters = '4.0'. "C
+    insert frequency into table frequencies.
+    frequency-first_letter  = '6.1'.
+    frequency-other_letters = '3.8'. "D
+    insert frequency into table frequencies.
+    frequency-first_letter  = '3.9'.
+    frequency-other_letters = '11.0'. "E
+    insert frequency into table frequencies.
+    frequency-first_letter  = '4.1'.
+    frequency-other_letters = '1.4'. "F
+    insert frequency into table frequencies.
+    frequency-first_letter  = '3.3'.
+    frequency-other_letters = '3.0'. "G
+    insert frequency into table frequencies.
+    frequency-first_letter  = '3.7'.
+    frequency-other_letters = '2.3'. "H
+    insert frequency into table frequencies.
+    frequency-first_letter  = '3.9'.
+    frequency-other_letters = '8.2'. "I
+    insert frequency into table frequencies.
+    frequency-first_letter  = '1.1'.
+    frequency-other_letters = '0.21'. "J
+    insert frequency into table frequencies.
+    frequency-first_letter  = '1.0'.
+    frequency-other_letters = '2.5'. "K
+    insert frequency into table frequencies.
+    frequency-first_letter  = '3.1'.
+    frequency-other_letters = '5.3'. "L
+    insert frequency into table frequencies.
+    frequency-first_letter  = '5.6'.
+    frequency-other_letters = '2.7'. "M
+    insert frequency into table frequencies.
+    frequency-first_letter  = '2.2'.
+    frequency-other_letters = '7.2'. "N
+    insert frequency into table frequencies.
+    frequency-first_letter  = '2.5'.
+    frequency-other_letters = '6.1'. "O
+    insert frequency into table frequencies.
+    frequency-first_letter  = '7.7'.
+    frequency-other_letters = '2.8'. "P
+    insert frequency into table frequencies.
+    frequency-first_letter  = '0.49'.
+    frequency-other_letters = '0.24'. "Q
+    insert frequency into table frequencies.
+    frequency-first_letter  = '6.0'.
+    frequency-other_letters = '7.3'. "R
+    insert frequency into table frequencies.
+    frequency-first_letter  = '11.0'.
+    frequency-other_letters = '8.7'. "S
+    insert frequency into table frequencies.
+    frequency-first_letter  = '5.0'.
+    frequency-other_letters = '6.7'. "T
+    insert frequency into table frequencies.
+    frequency-first_letter  = '2.9'.
+    frequency-other_letters = '3.3'. "U
+    insert frequency into table frequencies.
+    frequency-first_letter  = '1.5'.
+    frequency-other_letters = '1.0'. "V
+    insert frequency into table frequencies.
+    frequency-first_letter  = '2.7'.
+    frequency-other_letters = '0.91'. "W
+    insert frequency into table frequencies.
+    frequency-first_letter  = '0.05'.
+    frequency-other_letters = '0.27'. "X
+    insert frequency into table frequencies.
+    frequency-first_letter  = '0.36'.
+    frequency-other_letters = '1.6'. "Y
+    insert frequency into table frequencies.
+    frequency-first_letter  = '0.24'.
+    frequency-other_letters = '0.44'. "Z
+    insert frequency into table frequencies.
 
   endmethod.
 
 
   method get_frequency.
 
-    read table frequencies assigning field-symbol(<frequency>) index find( val = sy-abcde sub = i_letter ).
+    field-symbols <frequency> like line of frequencies.
+
+    read table frequencies assigning <frequency> index find( val = sy-abcde sub = i_letter ).
     assert sy-subrc = 0.
 
     if i_first = abap_true.
@@ -240,8 +298,8 @@ class lcl_wordle implementation.
 
     data:
       match_result_tab type match_result_tab,
-      match_result_wa like line of match_result_tab,
-      matched_word type ty_matched_word.
+      match_result_wa  like line of match_result_tab,
+      matched_word     type ty_matched_word.
 
 
     find all occurrences of regex regex_string in table word_list
@@ -267,8 +325,7 @@ class lcl_wordle implementation.
 
   method calculate_score.
 
-    field-symbols:
-      <ls_matched_word> type ty_matched_word.
+    field-symbols <ls_matched_word> type ty_matched_word.
 
     loop at matched_word_tab assigning <ls_matched_word>.
 
@@ -417,12 +474,12 @@ class lcl_wordle implementation.
   method contains_all_orange_letters.
 
     data:
-      word    type char6,
-      orange1 type c,
-      orange2 type c,
-      orange3 type c,
-      orange4 type c,
-      orange5 type c,
+      word             type char6,
+      orange1          type c,
+      orange2          type c,
+      orange3          type c,
+      orange4          type c,
+      orange5          type c,
       contains_orange1 type abap_bool,
       contains_orange2 type abap_bool,
       contains_orange3 type abap_bool,
@@ -447,23 +504,23 @@ class lcl_wordle implementation.
       orange5 = orange_letters+4(1).
 
       if word ca orange1.
-       contains_orange1 = abap_true.
+        contains_orange1 = abap_true.
       endif.
 
       if word ca orange2.
-       contains_orange2 = abap_true.
+        contains_orange2 = abap_true.
       endif.
 
       if word ca orange3.
-       contains_orange3 = abap_true.
+        contains_orange3 = abap_true.
       endif.
 
       if word ca orange4.
-       contains_orange4 = abap_true.
+        contains_orange4 = abap_true.
       endif.
 
       if word ca orange5.
-       contains_orange5 = abap_true.
+        contains_orange5 = abap_true.
       endif.
 
       if contains_orange1 = abap_true and
@@ -472,11 +529,11 @@ class lcl_wordle implementation.
          contains_orange4 = abap_true and
          contains_orange5 = abap_true .
 
-         r_contains_all_orange_letters = abap_true.
+        r_contains_all_orange_letters = abap_true.
 
       else.
 
-         r_contains_all_orange_letters = abap_false.
+        r_contains_all_orange_letters = abap_false.
 
       endif.
 
@@ -487,10 +544,10 @@ class lcl_wordle implementation.
 
   method build_5_letter_word_list.
 
-  "
-  " Source for 5-Letter Word List:
-  " https://www-cs-faculty.stanford.edu/~knuth/sgb-words.txt
-  "
+    "
+    " Source for 5-Letter Word List:
+    " https://www-cs-faculty.stanford.edu/~knuth/sgb-words.txt
+    "
 
     append 'WHICH' to word_list.
     append 'THERE' to word_list.
