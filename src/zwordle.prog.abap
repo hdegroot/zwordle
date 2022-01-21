@@ -138,11 +138,21 @@ at selection-screen output.
       black_letters_regex = |[{ pblack }]|.
     endif.
 
-    replace all occurrences of regex black_letters_regex in pletter1 with ''.
-    replace all occurrences of regex black_letters_regex in pletter2 with ''.
-    replace all occurrences of regex black_letters_regex in pletter3 with ''.
-    replace all occurrences of regex black_letters_regex in pletter4 with ''.
-    replace all occurrences of regex black_letters_regex in pletter5 with ''.
+    if strlen( pletter1 ) > 1.
+      replace all occurrences of regex black_letters_regex in pletter1 with ''.
+    endif.
+    if strlen( pletter2 ) > 1.
+      replace all occurrences of regex black_letters_regex in pletter2 with ''.
+    endif.
+    if strlen( pletter3 ) > 1.
+      replace all occurrences of regex black_letters_regex in pletter3 with ''.
+    endif.
+    if strlen( pletter4 ) > 1.
+      replace all occurrences of regex black_letters_regex in pletter4 with ''.
+    endif.
+    if strlen( pletter5 ) > 1.
+      replace all occurrences of regex black_letters_regex in pletter5 with ''.
+    endif.
 
   endif.
 
