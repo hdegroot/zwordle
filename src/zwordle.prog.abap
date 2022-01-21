@@ -267,7 +267,12 @@ class lcl_wordle implementation.
 
     field-symbols <frequency> like line of frequencies.
 
-    read table frequencies assigning <frequency> index find( val = sy-abcde sub = i_letter ).
+    data v_index type i.
+
+
+    v_index = find( val = sy-abcde sub = i_letter ) + 1.
+
+    read table frequencies assigning <frequency> index v_index.
     assert sy-subrc = 0.
 
     if i_first = abap_true.
