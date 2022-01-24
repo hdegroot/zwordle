@@ -29,11 +29,7 @@ Use [abapGit](https://abapgit.org/)!
 ## Manual Installation
 
 1. Tcode SE38: Create program ZWORDLE.
-<<<<<<< HEAD
 2. Copy-paste the [ZWORDLE source code](https://github.com/hdegroot/zwordle/blob/main/src/zwordle.prog.abap) into the just created program.
-=======
-2. Copy-paste the [ZWORDLE source code]([https://github.com/hdegroot/zwordle/blob/main/src/zwordle.prog.abap) into the just created program.
->>>>>>> 274dd648fb6df58776d03bbc628788148b27d693
 3. Populate Text Symbols and Selection Texts (see selection screen screenshot). (Annoying, yes I know. That's why you should use abapGit!)
 3. Tcode SE93: Create transaction code ZWORDLE.
 
