@@ -19,6 +19,9 @@ ZWORDLE uses the list of 5-letter words found here: [https://www-cs-faculty.stan
 [Marc Bernard](https://github.com/mbtools) added a feature to "score" words based on the letter Frequency for English Dictionary Words.
 See: [Source of Letter Frequency for English Dictionary Words](https://en.wikipedia.org/wiki/Letter_frequency)
 
+# God Mode
+
+Run ZWORDLE in "God Mode" to get the word of the day right away :-) How is that possible, you ask? Read this [article](https://arstechnica.com/gaming/2022/01/beware-trolls-are-out-to-spoil-tomorrows-wordle-for-you) for an explanation.
 
 # Installation
 
