@@ -60,6 +60,12 @@
     </item>
     <item>
      <ID>S</ID>
+     <KEY>PGMODE</KEY>
+     <ENTRY>God Mode</ENTRY>
+     <LENGTH>16</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
      <KEY>PLETTER1</KEY>
      <ENTRY>1st Letter</ENTRY>
      <LENGTH>18</LENGTH>
