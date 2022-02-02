@@ -12,7 +12,7 @@ Have fun ... and amaze your friends with your Wordle skills! :-)
 
 # Word List
 
-ZWORDLE uses the list of 5-letter words found here: [https://www-cs-faculty.stanford.edu/~knuth/sgb-words.txt](https://www-cs-faculty.stanford.edu/~knuth/sgb-words.txt)
+ZWORDLE uses the list of 5-letter words from source [Collins Scrabble Words Dec 2021](https://github.com/hdegroot/zwordle/files/7967610/5-letter-words.txt).
 
 # Word Score
 
