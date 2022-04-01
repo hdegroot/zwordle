@@ -9,3 +9,7 @@ MIT License - Copyright (c) 2022 Hugo de Groot
 2. Cut & paste the code [zwordle.abap](zwordle.abap) into left window
 3. Adjust call at end of code
 4. Runs automatically and shows results in right window
+
+[zwordle1](zwordle_1.png)
+
+[zwordle2](zwordle_2.png)

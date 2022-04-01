@@ -7,7 +7,7 @@
 " MIT License - Copyright (c) 2022 Hugo de Groot
 "
 " 1. Open https://transpiler.abaplint.org/
-" 2. Cut & paste this code into left window
+" 2. Cut & paste this code (zwordle.abap) into left window
 " 3. Adjust call at end of code
 " 4. Runs automatically and shows results in right window
 "
