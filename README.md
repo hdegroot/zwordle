@@ -12,13 +12,16 @@ Have fun ... and amaze your friends with your Wordle skills! :-)
 
 # Word List
 
-ZWORDLE uses the list of 5-letter words found here: [https://www-cs-faculty.stanford.edu/~knuth/sgb-words.txt](https://www-cs-faculty.stanford.edu/~knuth/sgb-words.txt)
+ZWORDLE uses the list of 5-letter words from source [Collins Scrabble Words Dec 2021](https://github.com/hdegroot/zwordle/files/7967610/5-letter-words.txt).
 
 # Word Score
 
 [Marc Bernard](https://github.com/mbtools) added a feature to "score" words based on the letter Frequency for English Dictionary Words.
 See: [Source of Letter Frequency for English Dictionary Words](https://en.wikipedia.org/wiki/Letter_frequency)
 
+# God Mode
+
+Run ZWORDLE in "God Mode" to get the word of the day right away :-) How is that possible, you ask? Read this [article](https://arstechnica.com/gaming/2022/01/beware-trolls-are-out-to-spoil-tomorrows-wordle-for-you) for an explanation.
 
 # Installation
 

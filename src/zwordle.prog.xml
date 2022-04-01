@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <abapGit version="v1.0.0" serializer="LCL_OBJECT_PROG" serializer_version="v1.0.0">
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <PROGDIR>
     <NAME>ZWORDLE</NAME>
-    <STATE>A</STATE>
-    <VARCL>X</VARCL>
     <SUBC>1</SUBC>
     <RSTAT>P</RSTAT>
     <RLOAD>E</RLOAD>
@@ -59,6 +57,12 @@
      <KEY>PBLACK</KEY>
      <ENTRY>Black Letters</ENTRY>
      <LENGTH>21</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>PGMODE</KEY>
+     <ENTRY>God Mode</ENTRY>
+     <LENGTH>16</LENGTH>
     </item>
     <item>
      <ID>S</ID>
